@@ -25,5 +25,9 @@ def AICLIENT_get_nth_json_result(json_obj, n):
     return obj["results"][0]["result"]["tag"]["classes"][n]
 
 def AICLIENT_get_wikipedia_desc(tag):
-    page = wikipedia.summary(tag, 1)
+    page = ""
+    try:
+        page = wikipedia.summary(tag, 1)
+    except wikipedia.exceptions.DisambiguationError as e:
+        page = wikipedia.summary(e.options[0], 1);
     return page
