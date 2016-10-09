@@ -1,26 +1,27 @@
-<!DOCTYPE html><html lang="en"><head>   <meta charset="utf-8" />   <center><title>PicGenie (508-762-4753)</title></center>      <!-- import plugin script -->   <script src='static/Chart.min.js'></script>   </head><body>
-        <center><h1>PicGenie Text: (508-762-4753)</h1></center><!-- bar chart canvas element --><center><canvas id="chart" width="900" height="600"></canvas></center>
+<!DOCTYPE html><html lang="en"><head>   <meta charset="utf-8" />   <title>PicGenie</title>      <!-- import plugin script -->  </head><body>
+<h1>PicGenie (Text 508-762-4753)</h1><!-- bar chart canvas element --><canvas id="chart" width="600" height="400"></canvas>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
 <script>
-   var pieData = [
-            {% for item,label,colors in set %}
-                {
-                    value: {{item}},
-                    label: "{{label}}",
-                    color : "{{colors}}"
-                },
-                {% endfor %}
- 
- 
-         ];
- 
-   // get bar chart canvas
-   var mychart = document.getElementById("chart").getContext("2d");
- 
-   steps = 10
-   max = 10
-   // draw pie chart
-   new Chart(document.getElementById("chart").getContext("2d")).Doughnut(pieData);
- 
+var laber = [];
+var colors = [];
+var datar = []
+// draw pie chart
+
+    {% for item, label, colors in set %}
+        laber.push("{{label}}");
+        colors.push("{{colors}}");
+        datar.push({{item}});
+    {% endfor %}
+    var s = new Chart(document.getElementById("chart").getContext("2d"), {
+        type: 'doughnut',
+        data : {
+            labels: laber,
+            datasets: [{
+                backgroundColor: colors,
+                data : datar
+            }]
+        }
+    });
 </script>
 </body></html>
-
