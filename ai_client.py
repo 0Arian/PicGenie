@@ -3,11 +3,7 @@ import wikipedia
 import json
 
 def get_name_and_description(image):
-<<<<<<< HEAD
     guess = AICLIENT_get_nth_json_result(AICLIENT_get_json_obj_remote(image), 0)
-=======
-    guess = AICLIENT_get_nth_json_result(AICLIENT_get_json_obj_local(image), 0)
->>>>>>> 4dfc91a5b525f35a700a4d42aa5f0d8577c36716
     retString = "Your picture is most likely a %s.\n" % guess
     retString += AICLIENT_get_wikipedia_desc(guess)
     return retString
