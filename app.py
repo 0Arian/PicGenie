@@ -1,6 +1,8 @@
 from flask import Flask, request, redirect
 import twilio.twiml
 import ai_client
+from PIL import Image
+
 
 app = Flask(__name__)
 
@@ -14,7 +16,8 @@ def picInfo():
 	elif numImages > 1:
 		response.message("Please send an image.")
 	else:
-		message.body = ai_client.get_name_and_description(request.form['MediaUrl0'])
+		file = Image.open(request.form['MediaUrl0'])
+		message.body = ai_client.get_name_and_description(file)
 
 	print str(message.body)
 	return str(resp)
