@@ -3,7 +3,7 @@ import wikipedia
 import json
 
 def get_name_and_description(image):
-    guess = AICLIENT_get_nth_json_result(AICLIENT_get_json_obj_local(image), 0)
+    guess = AICLIENT_get_nth_json_result(AICLIENT_get_json_obj_remote(image), 0)
     retString = "Your picture is most likely a %s.\n" % guess
     retString += AICLIENT_get_wikipedia_desc(guess)
     return retString
@@ -15,7 +15,7 @@ def AICLIENT_get_json_obj_local(filename):
     return json.dumps(result)
 
 def AICLIENT_get_json_obj_remote(url):
-    api = ClarifaiApi()
+    api = ClarifaiApi("")
     result = api.tag_image_urls(url);
     return json.dumps(result)
 
