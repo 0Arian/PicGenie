@@ -1,3 +1,9 @@
-from ai_client import AICLIENT_get_json_obj_remote
+from ai_client import *
+import json
+from StringIO import StringIO
 
-print AICLIENT_get_json_obj_remote("http://www.telegraph.co.uk/content/dam/Travel/galleries/travel/hubs/thebigpicture/the-big-picture-photography-competition-round-393/Fary-Afshar-large.jpg")
+obj = AICLIENT_get_json_obj_remote("https://staticdelivery.nexusmods.com/mods/110/images/74627-0-1459502036.jpg")
+
+tag = AICLIENT_get_nth_json_result(obj, 0)
+
+print AICLIENT_get_wikipedia_desc(tag)
