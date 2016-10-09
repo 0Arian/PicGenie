@@ -1,0 +1,8 @@
+import os
+import glob
+import hashlib
+import unittest
+from clarifai.client.client import ClarifaiApi, ApiError
+
+def get_json_obj(filename):
+    
