@@ -6,7 +6,7 @@ from random import randint
 app = Flask(__name__)
 labels = []; values = []; colors = []
 
-@app.route("/index", methods=['GET'])
+@app.route("/index")
 def render_graph():
 	print values
 	print labels
@@ -35,14 +35,13 @@ def handle_message():
 				labels.append(guess)
 				values.append(1)
 			colors.append('#%06X' % randint(0, 0xFFFFFF))
-
-			retString = "Your picture is most likely a %s. " % guess
+			
+                        retString = "Your picture is most likely a %s. " % guess
 			retString += ai_client.get_wikipedia_desc(guess)
 			message.body = retString
-
 	print labels
 	print values
 	return str(response)
 
 if (__name__) == "__main__":
-	app.run(debug=True)
+	app.run(debug=True, host='0.0.0.0', port=5001)
